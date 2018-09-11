@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+
+
+.list__container {
+    margin: 0 auto;
+    display: flex;
+    background-color: aqua;
+    width: 815px;
+}
+
+.list {
+    background-color: aliceblue;
+    list-style: none;
+    margin-right: 5px;
+}
+
+.list__item {
+    width: 200px;
+    padding: 10px;
+}
+
+.list__item-first {
+    border-left: 2px solid red;
+}
+
+.list__item-second {
+    border-left: 2px solid orange;
+}
+
+.list__item-third {
+     border-left: 2px solid yellow;
+} 
+
+.list__item-fourth {
+    border-left: 2px solid green;
+}
