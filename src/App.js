@@ -176,8 +176,7 @@ class App extends Component {
   }
   
   render() {
-      const { inputValue, isImportant, isUrgent, imAndUrgLists,
-          imAndLessUrgLists, lessImAndUrgLists, lessImAndLessUrgLists, activeKey } = this.state;
+      const { inputValue, isImportant, isUrgent, activeKey } = this.state;
   
     return (
       <div className="App">
@@ -194,10 +193,10 @@ class App extends Component {
         <div className="list__container">
         
             <div className="list__nav">
-                <a href="#" onClick={() => this.onHandleActiveKey(1)} className={activeKey === 1 ? 'active' : null}>Imp and UGT</a>
-                <a href="#" onClick={() => this.onHandleActiveKey(2)} className={activeKey === 2 ? 'active' : null}>LessImp and UGT</a>
-                <a href="#" onClick={() => this.onHandleActiveKey(3)} className={activeKey === 3 ? 'active' : null}>Imp and LessUGT</a>
-                <a href="#" onClick={() => this.onHandleActiveKey(4)} className={activeKey === 4 ? 'active' : null}>LEssImp and LessUGT</a>
+                <a href="#imAndUrgLists" onClick={() => this.onHandleActiveKey(1)} className={activeKey === 1 ? 'active' : null}>Imp and UGT</a>
+                <a href="#lessImAndUrgLists" onClick={() => this.onHandleActiveKey(2)} className={activeKey === 2 ? 'active' : null}>LessImp and UGT</a>
+                <a href="#imAndLessUrgLists" onClick={() => this.onHandleActiveKey(3)} className={activeKey === 3 ? 'active' : null}>Imp and LessUGT</a>
+                <a href="#lessImAndLessUrgLists" onClick={() => this.onHandleActiveKey(4)} className={activeKey === 4 ? 'active' : null}>LEssImp and LessUGT</a>
             </div>
                 
             <div>
