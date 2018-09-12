@@ -11,10 +11,14 @@ const List = ({lists, onDismiss, children, getClassName, handleGoUp, handleGoDow
         <ul className="list">
            
            {lists.map( list => 
-            <li key={list.id} className={getClassName(lists)}><span>{list.content}</span> 
-             <button onClick={() => onDismiss(lists, list.id)}>Dismiss</button>
-              <button onClick={() => handleGoUp(lists, list.id)}>Up</button>
-              <button onClick={() => handleGoDown(lists, list.id)}>Down</button>
+            <li key={list.id} className={getClassName(lists)}><span>{list.content}</span>
+             <div className="btn__group">
+             
+                  <button onClick={() => handleGoUp(lists, list.id)} className="btn"><i className="fas fa-arrow-up"></i></button>
+                  <button onClick={() => handleGoDown(lists, list.id)} className="btn"><i className="fas fa-arrow-down"></i></button>
+                  <button onClick={() => onDismiss(lists, list.id)} className="btn"><i className="fas fa-times"></i></button>
+                  
+              </div> 
             </li>
             )
            }

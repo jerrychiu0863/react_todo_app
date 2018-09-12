@@ -8,40 +8,119 @@
 
 body {
     padding: 30px;
+    background: linear-gradient(to left, #505d6a, #498194);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .App {
   text-align: center;
+  width: 800px;
+  margin: 0 auto;
 }
+
+/******************************************************/
+/*FORM*/
+
+form {
+    background-color: #203A43;
+    padding: 20px 0;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #203A43;
+}
+
+option {
+    font-size: 16px;
+    white-space: normal;
+}
+
+input {
+    padding: 10.4px;
+    width: 300px;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.btn--submit {
+    transform: translateX(-30px)translateY(3px);
+}
+
+/******************************************************/
+/*LIST*/
 
 .list__container {
     display: flex;
-    background-color: aqua;
+    background-color: #203A43;
     justify-content: center;
+    
+    box-shadow: 0 2px 4px rgba(0,0,0, .24);
 }
 
 .list {
-    background-color: whitesmoke;
     list-style: none;
     margin-right: 5px;
     width: 350px;
-
-    padding: 10px;
-   
+    padding: 0px;
     border-radius: 3px;
 }
 
+.list__nav {
+    width: 300px;
+    height: 600px;
+    background-color: rgba(87, 150, 175, .8);
+    padding-top: 200px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.list__nav a {
+    padding: 10px;
+    color: #203A43;
+    display: block;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 5px;
+  
+}
+
+.active {
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
 .list__item {
+    display: flex;
     width: 100%;
+    color:#ced9dd;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-align: left;
     padding: 20px;
-    background-color: floralwhite;
-    margin-bottom: 5px;
+    background-color: rgba(87, 150, 175, .8);
+    opacity: .8;
+    margin-bottom: 1px;
     box-shadow: 0 2px 4px rgba(0,0,0, .1);
+    border-radius: 5px;
+}
+
+.list__item:hover {
+    background-color: rgba(87, 150, 175, 1);
+}
+
+.list__item span {
+    margin-right: auto;
+    width: 180px;
 }
 
 .list__item-first {
-    border-left: 2px solid red;
+    border-left: 4px solid red;
 }
 
 .list__item-second {
@@ -54,4 +133,33 @@ body {
 
 .list__item-fourth {
     border-left: 2px solid green;
+}
+
+/******************************************************/
+/*BUTTON*/
+
+.btn {
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn__group {
+    opacity: 0;
+    transition: all .2s linear;
+}
+
+.list__item:hover .btn__group {
+    opacity: 1;
+}
+
+i {
+    font-size: 20px;
+    color:#ced9dd;
+}
+
+i:hover {
+    font-size: 20px;
+    color: #00161e;
 }

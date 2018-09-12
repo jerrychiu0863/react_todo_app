@@ -34,6 +34,7 @@ class App extends Component {
       
       this.state = {
           inputValue: '',
+          activeKey: 1,
           isImportant: 'important',
           isUrgent: 'urgent',
           imAndUrgLists: [],
@@ -86,6 +87,30 @@ class App extends Component {
       this.setState({ isUrgent: e.target.value });
   }
   
+  onHandleActiveKey(key) {
+      this.setState({ activeKey: key });
+  }
+
+  renderList = () => {
+      const { activeKey, imAndUrgLists, lessImAndUrgLists, imAndLessUrgLists, lessImAndLessUrgLists } = this.state;
+      
+      if(activeKey === 1) {
+          return <List 
+                    lists={imAndUrgLists} 
+                    onDismiss={this.onDismiss} 
+                    getClassName={this.getClassName} 
+                    handleGoUp={this.handleGoUp} 
+                    handleGoDown={this.handleGoDown}>
+                 </List>
+      } else if (activeKey === 2) {
+          return <List lists={lessImAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+      } else if (activeKey === 3) {
+          return   <List lists={imAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+      } else {
+          return  <List lists={lessImAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+      }
+  }
+  
   onDismiss = (lists, listId) => {
       
       const {imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists} = this.state;
@@ -100,10 +125,7 @@ class App extends Component {
       } else {
           this.setState({lessImAndLessUrgLists: updatedLists});
       }
-      
-      //console.log(lists);
-      //console.log(updatedLists);
-      
+
   }
   
   getClassName = (lists) => { 
@@ -155,7 +177,7 @@ class App extends Component {
   
   render() {
       const { inputValue, isImportant, isUrgent, imAndUrgLists,
-          imAndLessUrgLists, lessImAndUrgLists, lessImAndLessUrgLists } = this.state;
+          imAndLessUrgLists, lessImAndUrgLists, lessImAndLessUrgLists, activeKey } = this.state;
   
     return (
       <div className="App">
@@ -170,20 +192,20 @@ class App extends Component {
         
         />
         <div className="list__container">
-            <List lists={imAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}>Important And Urgent</List>
-            
-            <List lists={lessImAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}>Important But Less Urgent</List>
         
-            <List lists={imAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
-        
-            <List lists={lessImAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
-        
+            <div className="list__nav">
+                <a href="#" onClick={() => this.onHandleActiveKey(1)} className={activeKey === 1 ? 'active' : null}>Imp and UGT</a>
+                <a href="#" onClick={() => this.onHandleActiveKey(2)} className={activeKey === 2 ? 'active' : null}>LessImp and UGT</a>
+                <a href="#" onClick={() => this.onHandleActiveKey(3)} className={activeKey === 3 ? 'active' : null}>Imp and LessUGT</a>
+                <a href="#" onClick={() => this.onHandleActiveKey(4)} className={activeKey === 4 ? 'active' : null}>LEssImp and LessUGT</a>
+            </div>
+                
+            <div>
+                {this.renderList()}
+            </div>
+                 
         </div>
-        <DropTarget targetKey="foo">
-        <DropTarget targetKey="bar">
-          <div>You can drop a "foo" or a "bar on me</div>
-        </DropTarget>
-      </DropTarget>
+        
       </div>
     );
   }

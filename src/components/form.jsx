@@ -12,8 +12,8 @@ const Form = ({ isImportant, selectIsImportant, isUrgent, selectIsUrgent,  onInp
                 <option value="urgent">Urgent</option>
                 <option value="lessUrgent">LessUrgent</option>
             </select>
-            <input onChange={onInputChange} value={inputValue} />
-            <button type="submit" onClick={onHandleSubmit}>Submit</button>
+            <input onChange={onInputChange} value={inputValue} placeholder="add todo list..." />
+            <button type="submit" onClick={onHandleSubmit} className="btn btn--submit"><i className="fas fa-plus-circle"></i></button>
         </form>
     );
 }
