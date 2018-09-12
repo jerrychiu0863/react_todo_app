@@ -5,6 +5,7 @@ import List from './components/list';
 import Form from './components/form';
 import uniqid from 'uniqid';
 import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
+import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 
 /*
 const sliderStyle = {
@@ -123,6 +124,35 @@ class App extends Component {
      
   }
   
+  handleGoUp = (lists, listId) => {
+      
+      const index = lists.map(list => list.id).indexOf(listId);
+      const moveItem = (from, to) => {
+          var updatedList = lists.splice(from, 1)[0];
+          lists.splice(to, 0, updatedList)
+          
+      }
+      
+      if(index !== 0) {
+        const newLists = moveItem(index, index - 1);
+        this.setState({lists: newLists});
+      }
+        
+  }
+  
+  handleGoDown = (lists, listId) => {
+      
+      const index = lists.map(list => list.id).indexOf(listId);
+      const moveItem = (from, to) => {
+          var updatedList = lists.splice(from, 1)[0];
+          lists.splice(to, 0, updatedList)
+          
+      }
+      const newLists = moveItem(index, index + 1);
+      this.setState({lists: newLists});
+      
+  }
+  
   render() {
       const { inputValue, isImportant, isUrgent, imAndUrgLists,
           imAndLessUrgLists, lessImAndUrgLists, lessImAndLessUrgLists } = this.state;
@@ -140,11 +170,20 @@ class App extends Component {
         
         />
         <div className="list__container">
-            <List lists={imAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName}>Important And Urgent</List>
-            <List lists={lessImAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName}>Important But Less Urgent</List>
-            <List lists={imAndLessUrgLists} onDismiss={this.onDismiss} className={"list__item list__item-third"} getClassName={this.getClassName}></List>
-            <List lists={lessImAndLessUrgLists} onDismiss={this.onDismiss} className={"list__item list__item-fourth"} getClassName={this.getClassName}></List>
+            <List lists={imAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}>Important And Urgent</List>
+            
+            <List lists={lessImAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}>Important But Less Urgent</List>
+        
+            <List lists={imAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+        
+            <List lists={lessImAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+        
         </div>
+        <DropTarget targetKey="foo">
+        <DropTarget targetKey="bar">
+          <div>You can drop a "foo" or a "bar on me</div>
+        </DropTarget>
+      </DropTarget>
       </div>
     );
   }

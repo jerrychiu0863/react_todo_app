@@ -6,28 +6,38 @@
     box-sizing: border-box;
 }
 
+body {
+    padding: 30px;
+}
+
 .App {
   text-align: center;
 }
 
-
-
 .list__container {
-    margin: 0 auto;
     display: flex;
     background-color: aqua;
-    width: 815px;
+    justify-content: center;
 }
 
 .list {
-    background-color: aliceblue;
+    background-color: whitesmoke;
     list-style: none;
     margin-right: 5px;
+    width: 350px;
+
+    padding: 10px;
+   
+    border-radius: 3px;
 }
 
 .list__item {
-    width: 200px;
-    padding: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    background-color: floralwhite;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0, .1);
 }
 
 .list__item-first {
