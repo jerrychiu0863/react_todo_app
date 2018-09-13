@@ -3,30 +3,9 @@ import React, { Component } from 'react';
 import './App.css';
 import List from './components/list';
 import Form from './components/form';
+import Nav from './components/nav';
+
 import uniqid from 'uniqid';
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
-import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
-
-/*
-const sliderStyle = {
-    position: 'relative',
-  width: '100%',
-  height: 80,
-  border: '1px solid steelblue',
-}
-
-const railStyle = {
-     position: 'absolute',
-  width: '100%',
-  height: 10,
-  marginTop: 35,
-  borderRadius: 5,
-  backgroundColor: '#8B9CB6',
-}
-
-*/
-
-const lists = ['abe', 'cegsa', 'gge5'];
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +16,7 @@ class App extends Component {
           activeKey: 1,
           isImportant: 'important',
           isUrgent: 'urgent',
-          imAndUrgLists: [],
+          imAndUrgLists: [{content: 'Pay Bills', id: uniqid()}],
           imAndLessUrgLists: [],
           lessImAndUrgLists: [],
           lessImAndLessUrgLists: []
@@ -45,7 +24,8 @@ class App extends Component {
   }
     
   onInputChange = e => {
-      this.setState({ inputValue: e.target.value
+      this.setState({ 
+                        inputValue: e.target.value
                     });
   }
        
@@ -57,7 +37,7 @@ class App extends Component {
       } else {
           if(isImportant === 'important' && isUrgent === 'urgent') {
        
-          this.setState({imAndUrgLists: [...imAndUrgLists, {content: inputValue, id: uniqid()}] });
+          this.setState({ imAndUrgLists: [...imAndUrgLists, {content: inputValue, id: uniqid()}] });
           
       
           } else if (isImportant === 'important' && isUrgent === 'lessUrgent') {
@@ -66,7 +46,7 @@ class App extends Component {
 
           } else if (isImportant === 'lessImportant' && isUrgent === 'urgent') {
 
-              this.setState({lessImAndUrgLists: [...lessImAndUrgLists, {content: inputValue, id: uniqid()}]});
+              this.setState({ lessImAndUrgLists: [...lessImAndUrgLists, {content: inputValue, id: uniqid()}] });
 
           } else {
 
@@ -75,7 +55,7 @@ class App extends Component {
           }
       }
           
-      this.setState({inputValue: ''});
+      this.setState({ inputValue: '' });
       e.preventDefault();
   }
   
@@ -87,7 +67,7 @@ class App extends Component {
       this.setState({ isUrgent: e.target.value });
   }
   
-  onHandleActiveKey(key) {
+  onHandleActiveKey = (key) => {
       this.setState({ activeKey: key });
   }
 
@@ -100,39 +80,73 @@ class App extends Component {
                     onDismiss={this.onDismiss} 
                     getClassName={this.getClassName} 
                     handleGoUp={this.handleGoUp} 
-                    handleGoDown={this.handleGoDown}>
+                    handleGoDown={this.handleGoDown}
+                    handleClearList={this.handleClearList}
+                 >
                  </List>
       } else if (activeKey === 2) {
-          return <List lists={lessImAndUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+          return <List 
+                    lists={lessImAndUrgLists} 
+                    onDismiss={this.onDismiss} 
+                    getClassName={this.getClassName} 
+                    handleGoUp={this.handleGoUp} 
+                    handleGoDown={this.handleGoDown}
+                    handleClearList={this.handleClearList}
+                 >
+                 </List>
       } else if (activeKey === 3) {
-          return   <List lists={imAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+          return <List 
+                    lists={imAndLessUrgLists} 
+                    onDismiss={this.onDismiss} 
+                    getClassName={this.getClassName} 
+                    handleGoUp={this.handleGoUp} 
+                    handleGoDown={this.handleGoDown}
+                    handleClearList={this.handleClearList}
+                 >
+                 </List>
       } else {
-          return  <List lists={lessImAndLessUrgLists} onDismiss={this.onDismiss} getClassName={this.getClassName} handleGoUp={this.handleGoUp} handleGoDown={this.handleGoDown}></List>
+          return <List 
+                    lists={lessImAndLessUrgLists} 
+                    onDismiss={this.onDismiss} 
+                    getClassName={this.getClassName} 
+                    handleGoUp={this.handleGoUp} 
+                    handleGoDown={this.handleGoDown}
+                    handleClearList={this.handleClearList}
+                 >
+                 </List>
       }
   }
   
   onDismiss = (lists, listId) => {
       
-      const {imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists} = this.state;
+      const { imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists } = this.state;
       const updatedLists = lists.filter(list => listId !== list.id); 
       
       if(lists === imAndUrgLists) {
-          this.setState({imAndUrgLists: updatedLists});
+          this.setState({ 
+                          imAndUrgLists: updatedLists
+                       });
       } else if (lists === imAndLessUrgLists) {
-          this.setState({imAndLessUrgLists: updatedLists})
+          this.setState({ 
+                          imAndLessUrgLists: updatedLists 
+                       });
       } else if (lists === lessImAndUrgLists) {
-          this.setState({lessImAndUrgLists: updatedLists})
+          this.setState({ 
+                          lessImAndUrgLists: updatedLists 
+                       });
       } else {
-          this.setState({lessImAndLessUrgLists: updatedLists});
+          this.setState({ 
+                          lessImAndLessUrgLists: updatedLists 
+                       });
       }
 
   }
   
   getClassName = (lists) => { 
-    const { imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists, lessImAndLessUrgLists } = this.state;  
+    const { imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists } = this.state;  
       
     let className="list__item list__item-";
-    console.log(lists);
+    
     if(lists === imAndUrgLists) {
         className += "first";
     } else if(lists === lessImAndUrgLists) {
@@ -142,6 +156,7 @@ class App extends Component {
     } else {
         className += "fourth"
     }
+      
     return className;
      
   }
@@ -166,13 +181,37 @@ class App extends Component {
       
       const index = lists.map(list => list.id).indexOf(listId);
       const moveItem = (from, to) => {
+          
           var updatedList = lists.splice(from, 1)[0];
           lists.splice(to, 0, updatedList)
           
-      }
+      };
+      
       const newLists = moveItem(index, index + 1);
       this.setState({lists: newLists});
       
+  }
+  
+  handleClearList = (lists) => {
+      const { imAndUrgLists, imAndLessUrgLists, lessImAndUrgLists } = this.state;  
+       
+      if(lists === imAndUrgLists) {
+          this.setState({ 
+                            imAndUrgLists: [] 
+                        });
+      } else if(lists === imAndLessUrgLists){
+          this.setState({ 
+                          imAndLessUrgLists: [] 
+                       });
+      } else if(lists === lessImAndUrgLists) {
+          this.setState({ 
+                          lessImAndUrgLists: [] 
+                       })
+      } else {
+          this.setState({ 
+                          lessImAndLessUrgLists: [] 
+                       });
+      }
   }
   
   render() {
@@ -180,6 +219,7 @@ class App extends Component {
   
     return (
       <div className="App">
+        
         <Form 
             isImportant= {isImportant} 
             selectIsImportant={this.selectIsImportant}
@@ -190,14 +230,10 @@ class App extends Component {
             onHandleSubmit={this.onHandleSubmit}
         
         />
+        
         <div className="list__container">
         
-            <div className="list__nav">
-                <a href="#imAndUrgLists" onClick={() => this.onHandleActiveKey(1)} className={activeKey === 1 ? 'active' : null}>Imp and UGT</a>
-                <a href="#lessImAndUrgLists" onClick={() => this.onHandleActiveKey(2)} className={activeKey === 2 ? 'active' : null}>LessImp and UGT</a>
-                <a href="#imAndLessUrgLists" onClick={() => this.onHandleActiveKey(3)} className={activeKey === 3 ? 'active' : null}>Imp and LessUGT</a>
-                <a href="#lessImAndLessUrgLists" onClick={() => this.onHandleActiveKey(4)} className={activeKey === 4 ? 'active' : null}>LEssImp and LessUGT</a>
-            </div>
+            <Nav onHandleActiveKey={this.onHandleActiveKey} activeKey={activeKey} />
                 
             <div>
                 {this.renderList()}

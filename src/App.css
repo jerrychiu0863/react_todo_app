@@ -46,9 +46,6 @@ input:focus {
     outline: none;
 }
 
-.btn--submit {
-    transform: translateX(-30px)translateY(3px);
-}
 
 /******************************************************/
 /*LIST*/
@@ -123,15 +120,15 @@ input:focus {
 }
 
 .list__item-second {
-    border-left: 2px solid orange;
+    border-left: 4px solid #ff9430;
 }
 
 .list__item-third {
-     border-left: 2px solid yellow;
+     border-left: 4px solid yellow;
 } 
 
 .list__item-fourth {
-    border-left: 2px solid green;
+    border-left: 4px solid #5bd315;
 }
 
 /******************************************************/
@@ -147,6 +144,25 @@ input:focus {
 .btn__group {
     opacity: 0;
     transition: all .2s linear;
+}
+
+.btn--submit {
+    transform: translateX(-30px)translateY(3px);
+}
+
+.btn--clear {
+    
+    font-size: 15px;
+    color: #ced9dd;
+    padding: 5px;
+    margin-top: 10px;
+    border: 2px solid #ced9dd;
+    transition: all .2s linear;
+}
+
+.btn--clear:hover {
+    background-color: #ced9dd;
+    color: #203A43;
 }
 
 .list__item:hover .btn__group {
