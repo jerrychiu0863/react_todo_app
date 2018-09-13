@@ -9,6 +9,7 @@
     "react-dom": "^16.4.2",
     "react-drag-drop-container": "^6.1.1",
     "react-scripts": "1.1.5",
+    "react-simple-storage": "^1.2.2",
     "uniqid": "^5.0.3"
   },
   "scripts": {

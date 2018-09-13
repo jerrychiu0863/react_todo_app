@@ -6,6 +6,7 @@ import Form from './components/form';
 import Nav from './components/nav';
 
 import uniqid from 'uniqid';
+import SimpleStorage from 'react-simple-storage';
 
 class App extends Component {
   constructor(props) {
@@ -219,6 +220,8 @@ class App extends Component {
   
     return (
       <div className="App">
+        
+        <SimpleStorage parent={this} />
         
         <Form 
             isImportant= {isImportant} 
